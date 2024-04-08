@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import GestLayout from "./components/GestLayout";
 import DefaultLayout from "./components/DefaultLayout";
 import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 
 const routes = [
     {
@@ -31,6 +32,10 @@ const routes = [
         path: "/",
         element: <GestLayout />,
         children: [
+            {
+                path: "/home",
+                element: <Home />,
+            },
             {
                 path: "/login",
                 element: <Login />,

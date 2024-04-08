@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: { 
+      colors: {
+        'tratop-red': '#FF0000', // Red
+        'tratop-white': '#FFFFFF', // White
+        'tratop-black': '#000000', // Black
+      },
+    },
   },
   plugins: [],
 }
