@@ -96,11 +96,11 @@ return [
     */
 
     'cipher' => 'AES-256-CBC',
-    'providers' => [
-        // Other Service Providers
+    // 'providers' => [
+    //     // Other Service Providers
 
-        Laravel\Passport\PassportServiceProvider::class,
-    ],
+    //     Laravel\Passport\PassportServiceProvider::class,
+    // ],
 
 
     'key' => env('APP_KEY'),
