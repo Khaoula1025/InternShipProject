@@ -53,11 +53,11 @@ const Home = () => {
                             id="navbar-default"
                         >
                             {/* Menu items */}
-                            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                                 <li>
                                     <a
                                         href="https://www.tratop.ma/"
-                                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                                         aria-current="page"
                                     >
                                         Home
@@ -66,7 +66,7 @@ const Home = () => {
                                 <li>
                                     <a
                                         href="https://www.tratop.ma/about"
-                                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                                     >
                                         A propos
                                     </a>
@@ -74,7 +74,7 @@ const Home = () => {
                                 <li>
                                     <a
                                         href="https://www.tratop.ma/technologies"
-                                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                                     >
                                         Nos technologies
                                     </a>
@@ -82,10 +82,20 @@ const Home = () => {
                                 <li>
                                     <a
                                         href="https://www.tratop.ma/contact"
-                                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-red-700 md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                                     >
                                         Contact
                                     </a>
+                                </li>
+                                <li>
+                                    <Link to='/login'>
+                                    Login
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to='/signup'>
+                                    Sign Up
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -94,34 +104,34 @@ const Home = () => {
             </header>
             <main className="flex-grow">{/* Your main content here */}</main>
             {/* Footer content */}
-            <footer class="flex flex-col space-y-10 justify-center m-10">
-                <nav class="flex justify-center flex-wrap gap-6 text-gray-500 font-medium">
+            <footer className="flex flex-col space-y-10 justify-center m-10">
+                <nav className="flex justify-center flex-wrap gap-6 text-gray-500 font-medium">
                     <a
-                        class="hover:text-gray-900 transition transform hover:scale-110"
+                        className="hover:text-gray-900 transition transform hover:scale-110"
                         href="#"
                     >
                         Home
                     </a>
                     <a
-                        class="hover:text-gray-900 transition transform hover:scale-110"
+                        className="hover:text-gray-900 transition transform hover:scale-110"
                         href="#"
                     >
                         About
                     </a>
                     <a
-                        class="hover:text-gray-900 transition transform hover:scale-110"
+                        className="hover:text-gray-900 transition transform hover:scale-110"
                         href="#"
                     >
                         Contact
                     </a>
                 </nav>
 
-                <div class="flex justify-center space-x-5">
+                <div className="flex justify-center space-x-5">
                     <a
                         href="https://facebook.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="transition transform hover:scale-110"
+                        className="transition transform hover:scale-110"
                     >
                         <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
                     </a>
@@ -129,7 +139,7 @@ const Home = () => {
                         href="https://linkedin.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="transition transform hover:scale-110"
+                        className="transition transform hover:scale-110"
                     >
                         <img src="https://img.icons8.com/fluent/30/000000/linkedin-2.png" />
                     </a>
@@ -137,7 +147,7 @@ const Home = () => {
                         href="https://instagram.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="transition transform hover:scale-110"
+                        className="transition transform hover:scale-110"
                     >
                         <img src="https://img.icons8.com/fluent/30/000000/instagram-new.png" />
                     </a>
@@ -145,7 +155,7 @@ const Home = () => {
                         href="https://messenger.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="transition transform hover:scale-110"
+                        className="transition transform hover:scale-110"
                     >
                         <img src="https://img.icons8.com/fluent/30/000000/facebook-messenger--v2.png" />
                     </a>
@@ -153,12 +163,12 @@ const Home = () => {
                         href="https://twitter.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="transition transform hover:scale-110"
+                        className="transition transform hover:scale-110"
                     >
                         <img src="https://img.icons8.com/fluent/30/000000/twitter.png" />
                     </a>
                 </div>
-                <p class="text-center text-gray-700 font-medium">
+                <p className="text-center text-gray-700 font-medium">
                     &copy; TraTop Ingénierie © 2024
                 </p>
             </footer>
