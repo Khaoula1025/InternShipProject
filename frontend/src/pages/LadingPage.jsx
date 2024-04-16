@@ -9,7 +9,7 @@ const LadingPage = () => {
             <div
                 className="flex-1 background-container "
                 style={{
-                    backgroundImage: "url('/background2.jpg')",
+                    backgroundImage: "url('https://hotel-paradis-plage.web.app/img/Design.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
