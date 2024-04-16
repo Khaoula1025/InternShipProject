@@ -7,6 +7,8 @@ import GestLayout from "./components/GestLayout";
 import DefaultLayout from "./components/DefaultLayout";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
+import LadingPage from "./pages/LadingPage"
+import DataEntryForm from "./pages/DataEntryForm";
 
 const routes = [
     {
@@ -18,8 +20,8 @@ const routes = [
                 element: <Navigate to="/users"  />,
             },
             {
-                path: "/users",
-                element: <Users />,
+                path: "/DataEntry",
+                element: <DataEntryForm />,
             },
             {
                 path: "/Dashboard",
@@ -35,6 +37,10 @@ const routes = [
             {
                 path: "/home",
                 element: <Home />,
+            },
+            {
+                path: "/LandingPage",
+                element: <LadingPage />,
             },
             {
                 path: "/login",

@@ -8,10 +8,8 @@ export default function GestLayout() {
         return <Navigate to="/" />;
     }
     return (
-        <div>
-            {/* where the child elemets will be rendered that is the use of outlet  */}
-
+        <>
             <Outlet />
-        </div>
+        </>
     );
 }

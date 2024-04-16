@@ -11,8 +11,18 @@ export default {
         'tratop-white': '#FFFFFF', // White
         'tratop-black': '#000000', // Black
       },
+      animation: {
+        'word-appear': 'word-appear 1s ease-in-out forwards',
+      },
+      keyframes: {
+        'word-appear': {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
     },
   },
-  plugins: [],
-}
-
+  plugins: [
+    require('tailwindcss-animated'), // Correct placement
+  ],
+};
