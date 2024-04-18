@@ -7,7 +7,7 @@ import GestLayout from "./components/GestLayout";
 import DefaultLayout from "./components/DefaultLayout";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
-import LadingPage from "./pages/LadingPage"
+import LadingPage from "./pages/LadingPage";
 import DataEntryForm from "./pages/DataEntryForm";
 
 const routes = [
@@ -17,7 +17,7 @@ const routes = [
         children: [
             {
                 path: "/",
-                element: <Navigate to="/users"  />,
+                element: <Navigate to="/dashboard" />,
             },
             {
                 path: "/DataEntry",

@@ -1,33 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Navigate, Link } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
+import axios from "axios"; // Make sure to install axios if you haven't already
 
 export default function DefaultLayout() {
-    const { user, token } = useStateContext();
+    const { user, token, setUser, setToken } = useStateContext();
 
-    //  if (!token) {
-    //     return <Navigate to="/home" />;
-    //  }
+    const logout = async () => {
+        try {
+            // Make a request to your backend's logout endpoint
+            await axios.post(
+                `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            // Clear the user and token from the context
+            setUser(null);
+            setToken(null);
+
+            // Optionally, redirect the user to the login page
+            // Navigate('/login');
+        } catch (error) {
+            console.error("Logout failed:", error);
+        }
+    };
+
+    if (!token) {
+        return <Navigate to="/home" />;
+    }
 
     return (
         <div className="flex">
             {/* Sidebar */}
-            <aside className="w-64 bg-gray-800 text-white p-8 h-screen  flex flex-col items-center">
-                {/* Centered Avatar */}
-                <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 mb-4 flex items-center justify-center">
-                    <svg
-                        className="absolute w-12 h-12 text-gray-400 -left-1"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clipRule="evenodd"
-                        ></path>
-                    </svg>
-                </div>
+            <aside className="w-64 bg-gray-800 text-white p-8 h-screen flex flex-col items-center">
                 {/* Navigation Links */}
                 <Link to="/dashboard" className="block mb-2">
                     Dashboard
@@ -50,10 +60,10 @@ export default function DefaultLayout() {
                         </Link>
                         <button
                             type="button"
-                            class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                            className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                            onClick={logout}
                         >
-                            {" "}
-                            <Link className="text-white">Logout</Link>
+                            Logout
                         </button>
                     </div>
                 </header>

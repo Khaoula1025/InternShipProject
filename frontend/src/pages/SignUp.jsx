@@ -1,18 +1,18 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import axiosClient from "../axios-client";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useStateContext } from "../context/ContextProvider";
 export default function SignUp() {
-    const { setUser, setToken } = useStateContext;
+    const { setUser, setToken } = useStateContext();
     const [errors, setErrors] = useState(null);
-
+    const navigate = useNavigate();
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
         console.log(import.meta.env.VITE_API_BASE_URL);
 
@@ -23,19 +23,35 @@ export default function SignUp() {
             password_confirmation: confirmPasswordRef.current.value,
         };
 
-        axiosClient
-            .post("/signup", payload)
-            .then(({ data }) => {
-                setUser(data.user);
-                setToken(data.token);
-            })
-            .catch((err) => {
-                const response = err.response;
-                if (response && response.status === 422) {
-                    setErrors(response.data.errors);
-                }
-            });
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_BASE_URL}/api/register`,
+                payload
+            );
+
+            // Ensure the response object is defined and has a data property
+            if (response && response.data) {
+                console.log("User registered successfully:", response.data);
+                // Handle successful registration, e.g., redirect to login page
+                // You might want to set the user and token in your context here
+                setUser(response.data.user);
+                setToken(response.data.token);
+                navigate("/login");
+            } else {
+                console.error("Unexpected response structure:", response);
+            }
+        } catch (error) {
+            console.error(
+                "Registration failed:",
+                error.response ? error.response.data : error
+            );
+            // Handle registration failure, e.g., show error message
+            if (error.response && error.response.data) {
+                setErrors(error.response.data.errors);
+            }
+        }
     }
+
     return (
         <div>
             <section className="bg-gray-400  dark:bg-gray-900">
@@ -154,7 +170,6 @@ export default function SignUp() {
                                             required=""
                                         />
                                     </div>
-                                    
                                 </div>
                                 <button
                                     type="submit"

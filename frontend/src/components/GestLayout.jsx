@@ -5,7 +5,7 @@ export default function GestLayout() {
     const { token } = useStateContext();
 
     if (token) {
-        return <Navigate to="/" />;
+        return <Navigate to="/dashboard" />;
     }
     return (
         <>

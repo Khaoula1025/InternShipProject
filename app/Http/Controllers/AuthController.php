@@ -60,15 +60,14 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    // public function logout(Request $request)
-    // {
-    //     $user = auth()->user();
-
-    //     if ($user) {
-    //         $user->tokens()->delete();
-    //         return response()->json(['message' => 'Logged out']);
-    //     } else {
-    //         return response()->json(['message' => 'No authenticated user found'], 401);
-    //     }
-    // }
+    public function logout(Request $request)
+    {
+        $user = auth()->user();
+        if ($user) {
+            $user->tokens()->delete();
+            return response()->json(['message' => 'Logged out']);
+        } else {
+            return response()->json(['message' => 'No authenticated user found'], 401);
+        }
+    }
 }

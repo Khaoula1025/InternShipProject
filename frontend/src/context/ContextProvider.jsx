@@ -1,31 +1,36 @@
-import { createContext, useState ,useContext} from "react";
+import { createContext, useState, useContext } from "react";
 
+// Define the context with default values
 const StateContext = createContext({
     user: null,
     token: null,
-    SetUser:()=>{},
-    setToken:()=>{}
+    setUser: () => {},
+    setToken: () => {},
 });
-export const ContextProvider = ({ children }) => {
-    const [user, SetUser] = useState({});
-    const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
 
-    // this function is used to stay authentificed even if the page refresh
+// Define the context provider component
+export const ContextProvider = ({ children }) => {
+    // State for user and token
+    const [user, setUser] = useState({});
+    const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
+
+    // Function to set the token and update localStorage
     const setToken = (token) => {
         _setToken(token);
         if (token) {
-            localStorage.setItem("ACCES_TOKEN", token);
+            localStorage.setItem("ACCESS_TOKEN", token); // Corrected typo from "ACCES_TOKEN" to "ACCESS_TOKEN"
         } else {
-            localStorage.removeItem("ACCES_TOKEN");
+            localStorage.removeItem("ACCESS_TOKEN");
         }
     };
 
+    // Provide the context values to child components
     return (
         <StateContext.Provider
             value={{
                 user,
                 token,
-                SetUser,
+                setUser,
                 setToken,
             }}
         >
@@ -33,4 +38,6 @@ export const ContextProvider = ({ children }) => {
         </StateContext.Provider>
     );
 };
-export const useStateContext = ()=> useContext(StateContext)
+
+// Custom hook to use the context
+export const useStateContext = () => useContext(StateContext);
