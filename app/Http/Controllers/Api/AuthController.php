@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Laravel\Passport\HasApiTokens;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\loginRequest;
@@ -44,13 +43,13 @@ class AuthController extends Controller
         return response()->json([
             'user' => $user,
             'token' => $token,
-       ], 201);
-     }
-    // public function logout(Request $request)
-    // {
-    //     /** @var User $user  */
-    //     $user = $request->user();
-    //     $user->currentAccesToken()->delete();
-    //     return response('', 204);
-    // }
+        ], 201);
+    }
+    public function logout(Request $request)
+    {
+        /** @var User $user  */
+        $user = $request->user();
+        $user->currentAccesToken()->delete();
+        return response('', 204);
+    }
 }

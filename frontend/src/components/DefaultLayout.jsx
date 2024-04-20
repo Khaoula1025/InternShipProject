@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import { Outlet, Navigate, Link } from "react-router-dom";
+import { Outlet, useNavigate, Navigate, Link } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
 import axios from "axios"; // Make sure to install axios if you haven't already
 
 export default function DefaultLayout() {
     const { user, token, setUser, setToken } = useStateContext();
+    const navigate = useNavigate(); // Add this line
 
     const logout = async () => {
         try {
-            // Make a request to your backend's logout endpoint
             await axios.post(
                 `${import.meta.env.VITE_API_BASE_URL}/api/logout`,
                 {},
@@ -19,19 +19,17 @@ export default function DefaultLayout() {
                 }
             );
 
-            // Clear the user and token from the context
             setUser(null);
             setToken(null);
 
-            // Optionally, redirect the user to the login page
-            // Navigate('/login');
+            navigate("/login"); // Use navigate to redirect
         } catch (error) {
             console.error("Logout failed:", error);
         }
     };
 
     if (!token) {
-        return <Navigate to="/home" />;
+        return <Navigate to="/LandingPage" />;
     }
 
     return (

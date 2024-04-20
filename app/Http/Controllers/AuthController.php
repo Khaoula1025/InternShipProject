@@ -23,7 +23,7 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password'])
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -50,7 +50,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -60,14 +60,51 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
+    // public function logout(Request $request)
+    // {
+    //     // Attempt to retrieve the authenticated user
+    //     $user = auth()->user();
+
+    //     // Log the user object for debugging purposes
+    //     dd($user);
+
+    //     // Check if a user is authenticated
+    //     if ($user) {
+    //         // Delete all tokens associated with the user
+    //         $user->tokens()->delete();
+
+    //         // Return a successful response indicating the user has been logged out
+    //         return response()->json(['message' => 'Logged out successfully'], 200);
+    //     } else {
+    //         // If no user is authenticated, return an error response
+    //         return response()->json(['message' => 'No authenticated user found'], 401);
+    //     }
+    // }
+    //     public function logout(Request $request)
+    //     {
+    //         $request->user()->currentAccessToken()->delete();
+    //         return response()->json(['message' => 'Logged out']);
+    //     }
+    // }
     public function logout(Request $request)
     {
-        $user = auth()->user();
+        /** @var User $user */
+        $user = $request->user();
+        dd($user);
+        // Check if a user is authenticated
         if ($user) {
-            $user->tokens()->delete();
-            return response()->json(['message' => 'Logged out']);
+            // Delete all tokens associated with the user
+            $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
+
+            // Return a successful response indicating the user has been logged out
+            return response()->json([
+                'message' => 'Logged out successfully'
+            ], 204);
         } else {
-            return response()->json(['message' => 'No authenticated user found'], 401);
+            // If no user is authenticated, return an error response
+            return response()->json([
+                'message' => 'No authenticated user found'
+            ], 401);
         }
     }
 }
